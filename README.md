@@ -9,33 +9,36 @@ Startup:
 
 This will start two service containers: web (service "gatsby") and cypress
 
-Open browser to:
->http://192.168.2.99:3000/
 
 ## Running, creating Gatsby projects
 
 Console into running container:
 
->docker exec -it $(docker ps -q -f "name=gatsby") /bin/bash
+    docker exec -it -u 1000:1000 $(docker ps -q -f "name=gatsby") /bin/bash
 
 Go to existing project:
->cd gatsby_projects/my-gatsby-site
+    cd gatsby_projects/my-gatsby-site
 
-Run develop serve:
->npm run develop
+NPM install:
+    npm install
+
+Run develop/serve:
+    npm run develop
 
 You can see this gatsby project at:
 >http://192.168.2.99:8000/
 
 
-### Building a new project
+### New projects
 
-Follow their online tutorials using the gatbsy-cli. For new projects, make the script runner (like "run develop") use the same bound IP as the docker service, by modifying the entry in package.json in the gatsby project. 
+Follow their online tutorials using the gatbsy-cli. They may suggest using node 16 with nvm:
+    nvm use 16
 
-Example for "develop":
+After creating a new project, modify its package.json to make the scripting tasks (like "develop") use the same bound IP as the docker service. For example in gatsby_projects/my-gatsby-site/package.json:
 
       "develop": "gatsby develop -H 192.168.2.99",
 
 
-## About
+
+## About fixed IP
 Fixed IP for docker container is there for tools like cypress that test against a website.  The IP range of its docker network can conflict with another server in your host system.
