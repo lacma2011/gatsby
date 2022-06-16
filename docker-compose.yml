@@ -1,0 +1,26 @@
+version: '3'
+services:
+  gatsby:
+    build: .
+    image: mygatsbyproject2
+    container_name: gatsby2
+    restart: always
+    working_dir: /usr/src
+    ports:
+      - "3000:3000"
+    volumes: 
+      - .:/usr/src
+    networks:
+      mynetwork:
+        ipv4_address: 192.168.2.99
+    stdin_open: true
+    environment:
+      - HOST=192.168.2.99
+
+networks:
+  mynetwork:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.2.100/29
+          gateway: 192.168.2.97
