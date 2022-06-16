@@ -17,12 +17,15 @@ Console into running container:
     docker exec -it -u 1000:1000 $(docker ps -q -f "name=gatsby") /bin/bash
 
 Go to existing project:
+
     cd gatsby_projects/my-gatsby-site
 
 NPM install:
+
     npm install
 
 Run develop/serve:
+
     npm run develop
 
 You can see this gatsby project at:
@@ -32,6 +35,7 @@ You can see this gatsby project at:
 ### New projects
 
 Follow their online tutorials using the gatbsy-cli. They may suggest using node 16 with nvm:
+
     nvm use 16
 
 After creating a new project, modify its package.json to make the scripting tasks (like "develop") use the same bound IP as the docker service. For example in gatsby_projects/my-gatsby-site/package.json:
